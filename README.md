@@ -32,8 +32,8 @@ Tambahan Fitur:
 - FAQ box  
 
 
-# Link Heroku App
-https://hachoo.herokuapp.com/
+# Link Hachoo APK
+https://github.com/maidaasl/Hachoo-Flutter/releases
 
 # Modul
 - Modul Vaksin :
