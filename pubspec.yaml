@@ -33,6 +33,21 @@ dependencies:
   donasi:
     path: donasi
 
+  faq:
+    path: faq
+
+  pengguna:
+    path: pengguna
+  
+  cs:
+    path: cs
+
+  vaksin:
+    path: vaksin
+
+  homepage:
+    path: homepage
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
