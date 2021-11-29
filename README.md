@@ -1,7 +1,7 @@
 # C10 PAS PBP || Hachoo
 
-[![Pre-Release](https://github.com/maidaasl/Hachoo-Flutter/blob/main/.github/workflows/pre-release.yml/badge.svg)](https://github.com/maidaasl/Hachoo-Flutter/blob/main/.github/workflows/pre-release.yml)
-[![Release](https://github.com/maidaasl/Hachoo-Flutter/blob/main/.github/workflows/release.yml/badge.svg)](https://github.com/maidaasl/Hachoo-Flutter/blob/main/.github/workflows/release.yml)
+[![Pre-Release](https://github.com/maidaasl/Hachoo-Flutter/actions/workflows/pre-release.yml/badge.svg)](https://github.com/maidaasl/Hachoo-Flutter/actions/workflows/pre-release.yml)
+[![Release](https://github.com/maidaasl/Hachoo-Flutter/actions/workflows/release.yml/badge.svg)](https://github.com/maidaasl/Hachoo-Flutter/actions/workflows/release.yml)
 
 # DATA KELOMPOK 
 2006597166 - Maida Saniyah Lutfi  
