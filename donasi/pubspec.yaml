@@ -11,6 +11,11 @@ dependencies:
   flutter:
     sdk: flutter
 
+  http: ^0.13.4
+
+  hachoo:
+    path: ../.
+
   carousel_slider: ^4.0.0
 
 dev_dependencies:
@@ -24,9 +29,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
-  assets:
-    - assets/images/
 
   # To add assets to your package, add an assets section, like this:
   # assets:

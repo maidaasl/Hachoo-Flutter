@@ -27,7 +27,7 @@ class _CardDonasiState extends State<CardDonasi> {
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     children: [
-                      Image.asset('assets/images/hospital.jpeg'),
+                      Image.asset('assets/images/donasi/hospital.jpeg'),
                       const SizedBox(height: 10.0),
                       const Text("Donasi",
                         textAlign: TextAlign.left,

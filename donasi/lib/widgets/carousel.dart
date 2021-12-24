@@ -13,7 +13,7 @@ class _CarouselState extends State<Carousel> {
   final List<Widget> myData = [
     Stack(
         children: [
-          Image.asset('assets/images/masker.jpg'),
+          Image.asset('assets/images/donasi/masker.jpg'),
           const Positioned(
             child: Text("Donasi", style:
             TextStyle(
@@ -30,7 +30,7 @@ class _CarouselState extends State<Carousel> {
     ),
     Stack(
       children: [
-        Image.asset('assets/images/data.jpg'),
+        Image.asset('assets/images/donasi/data.jpg'),
         const Positioned(
           child: Text("Donasi", style:
           TextStyle(
