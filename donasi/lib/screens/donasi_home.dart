@@ -24,7 +24,6 @@ class _DonasiHomePageState extends State<DonasiHomePage> {
     try {
       data_message = [];
       final response = await http.get(Uri.parse(url));
-      // print(response.body);
       final dataJson = jsonDecode(response.body);
       for (var i in dataJson) {
         Fields fields = Fields(
@@ -45,10 +44,10 @@ class _DonasiHomePageState extends State<DonasiHomePage> {
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Carousel(),
-          SizedBox(height: 18),
+          const Carousel(),
+          const SizedBox(height: 18),
           Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column (
               children: const [
                 Text(
@@ -105,25 +104,23 @@ class _DonasiHomePageState extends State<DonasiHomePage> {
             )
           ),
 
-          SizedBox(height: 18),
-          // CardMessage(),
-          SizedBox(height: 18),
-          // CardMessage(),
-          SizedBox(height: 18),
-          // CardMessage(),
-          SizedBox(height: 18),
-          const Padding(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
-              "Tulis Pesanmu",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16,
-                  color: Colors.black),
+          const SizedBox(height: 18),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column (
+              children: const [
+                Text(
+                  "Tulis Pesanmu",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 32,
+                      color: Colors.black),
+                ),
+              ],
             ),
           ),
-          AddMessage(),
+          const AddMessage(),
         ]);
   }
 }
