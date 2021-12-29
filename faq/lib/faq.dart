@@ -1,70 +1,125 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:faq/models/faq_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:faq/models/question.dart';
 import 'package:faq/api/api_faq.dart';
 import 'dart:convert';
-import 'dart:async';
 
-Future<List<Question>?> futureQuestion = fetchQuestion();
+late Future<List<Question>?> futureQuestion;
 
-void main() => runApp(FaqListScreen());
+List<String> list = ["gambar 1","gambar 2","gambar 3"];
 
-class FaqListScreen extends StatelessWidget {
-  static const routeName = 'faq/';
+void main() => runApp(MyApp());
 
+class MyApp extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder (
-      future: futureQuestion,
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          var data = snapshot.data as List<Question>;
-          List<MyTile> listOfTiles = <MyTile> [
-            for(var q in data)
-              new MyTile(q.fields!.pertanyaan,
-                  <MyTile>[
-                    new MyTile(q.fields!.jawaban)
-                  ])
-          ];
-          return Scaffold(
-            appBar: AppBar(title: Text('Frequently Asked Question'),),
-            body: SingleChildScrollView(
-              physics: ScrollPhysics(),
-              child: Column(
-                children: <Widget>[
-                  Text(""),
-                  Center(
-                    child: Text(
-                      "FAQ",
-                      style: TextStyle(
-                        fontSize: 40.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.all(15.0),
-                    itemBuilder: (BuildContext context, int index) {
-                      return new StuffInTiles(listOfTiles[index]);
-                    },
-                    itemCount: listOfTiles.length,),
-                  Center(
-                    child: FormScreen(),
-                  )
-
-                ],
-              ),
-            ),
-          );
-        }
-        return const CircularProgressIndicator();
-      },
+    return MaterialApp(
+        home: FaqAPI()
     );
   }
 }
 
+class FaqAPI extends StatefulWidget {
+  @override
+  FaqListScreen createState() => FaqListScreen();
+}
+
+class FaqListScreen extends State<FaqAPI> {
+  static const routeName = 'faq/';
+
+  void initState() {
+    super.initState();
+    futureQuestion = fetchQuestion();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Frequently Ask Question',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Frequently Ask Question'),
+        ),
+        body: Center(
+          child: FutureBuilder<List<Question>?>(
+            future: fetchQuestion(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                var data = snapshot.data as List<Question>;
+                List<MyTile> listOfTiles = <MyTile> [
+                  for(var q in data)
+                    new MyTile(q.fields!.pertanyaan,
+                        <MyTile>[
+                          new MyTile(q.fields!.jawaban)
+                        ])
+                ];
+
+                return Scaffold(
+                  body: SingleChildScrollView(
+                    physics: ScrollPhysics(),
+                    child: Column(
+                      children: <Widget>[
+                        Text(""),
+                        Center(
+                          child: Text(
+                            "FAQ",
+                            style: TextStyle(
+                              fontSize: 40.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        ListView.builder(
+                          shrinkWrap: true,
+                          padding: const EdgeInsets.all(15.0),
+                          itemBuilder: (BuildContext context, int index) {
+                            return new StuffInTiles(listOfTiles[index]);
+                          },
+                          itemCount: listOfTiles.length,),
+                        Center(
+                          child: FormScreen(),
+                        ),
+                        Center(
+                          child: Container(
+                              child: CarouselSlider(
+                                options: CarouselOptions(),
+                                items: list.map((item) => Container(
+                                  child: Center(
+                                      child: Text(item.toString())
+                                  ),
+                                  color: Colors.green,
+                                )).toList(),
+                              )
+                          ),
+                        )
+
+                      ],
+                    ),
+                  ),
+                );
+              } else if (snapshot.data == null) {
+                return Container(
+                  child: Center(
+                      child:
+                      Text('Tidak ada FAQ')
+                  ),
+                );
+              }
+              // By default, show a loading spinner.
+              return const CircularProgressIndicator();
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class StuffInTiles extends StatelessWidget {
   final MyTile myTile;
@@ -115,14 +170,14 @@ class FormScreen extends StatelessWidget {
           child: Container(
               padding: EdgeInsets.all(12.0),
               decoration: BoxDecoration(
-                  color: Color(0xffc3f1fc),
+                  color: Color(0xff0c0c0c),
                   borderRadius: BorderRadius.all(Radius.circular(5.0))),
               child: new Center (
                   child: Text(
-                    "Ada Pertanyaan?",
+                    "Ingin bertanya?",
                     style: TextStyle(
                       fontSize: 25.0,
-                      color: Color(0xff374ABE),
+                      color: Color(0xff88e2cf),
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
@@ -138,7 +193,7 @@ class FormScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsetsDirectional.only(top: 25.0, bottom: 8.0, start: 16.0, end: 16.0),
             child: Text(
-              "Pertanyaan:",
+              "Pertanyaan",
               softWrap: true,
               style: new TextStyle(
                   fontSize: 17.0,
@@ -195,7 +250,7 @@ class FormScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => FaqListScreen()),
+                    builder: (context) => FaqAPI()),
               );
               futureQuestion = fetchQuestion();
             },

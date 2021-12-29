@@ -1,4 +1,7 @@
-class Question {
+import 'package:faq/faq.dart';
+import 'package:flutter/cupertino.dart';
+
+class Question{
   String model;
   int pk;
   Fields? fields;
@@ -28,7 +31,7 @@ class Question {
 class Fields {
   String pertanyaan;
   String jawaban;
-  String status;
+  bool status;
 
   Fields({required this.pertanyaan,required this.jawaban,required this.status});
 
