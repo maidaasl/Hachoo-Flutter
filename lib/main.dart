@@ -1,5 +1,4 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:faq/models/faq_models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
@@ -9,9 +8,10 @@ import 'dart:convert';
 
 late Future<List<Question>?> futureQuestion;
 
+String pertanyaan = '';
 List<String> list = ["gambar 1","gambar 2","gambar 3"];
 
-void main() => runApp(MyApp());
+void main() => runApp(FaqAPI());
 
 class MyApp extends StatelessWidget{
   @override
@@ -159,7 +159,7 @@ class MyTile {
 }
 
 class FormScreen extends StatelessWidget {
-  String pertanyaan = '';
+  // String pertanyaan = '';
 
   @override
   Widget build(BuildContext context) {
@@ -243,8 +243,10 @@ class FormScreen extends StatelessWidget {
                   headers: <String, String>{
                     'Content-Type': 'application/json; charset=UTF-8'
                   },
-                  body: jsonEncode(<String, String>{
+                  body: jsonEncode(<String, dynamic>{
                     'pertanyaan': pertanyaan,
+                    'jawaban':"",
+                    'status': false,
                   }));
               Navigator.pop(context);
               Navigator.push(
@@ -255,7 +257,7 @@ class FormScreen extends StatelessWidget {
               futureQuestion = fetchQuestion();
             },
             child: Text(" Kirimkan pertanyaan ", style: TextStyle(
-              // fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.bold,
                 color: Colors.black,
                 fontSize: 17.0
             ))

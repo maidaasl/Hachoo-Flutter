@@ -47,6 +47,7 @@ class Fields {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['pertanyaan'] = this.pertanyaan;
     data['jawaban'] = this.jawaban;
+    data['status'] = this.status;
     return data;
   }
 }

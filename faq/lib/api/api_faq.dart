@@ -6,6 +6,7 @@ Future<List<Question>?> fetchQuestion() async {
   final response = await http.get(Uri.parse('https://hachoo.herokuapp.com/Faq/json'));
 
   if (response.statusCode == 200) {
+    // print(json.decode(response.body));
     return parseItem(response.body);
   } else {
     throw Exception('Failed to load Get');
