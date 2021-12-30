@@ -1,3 +1,4 @@
+import 'package:donasi/widgets/form_donasi_apd.dart';
 import 'package:flutter/material.dart';
 
 class CardDonasiApd extends StatefulWidget {
@@ -45,7 +46,11 @@ class _CardDonasiApdState extends State<CardDonasiApd> {
                     ],
                   ),
                 ),
-                ElevatedButton(onPressed: () {}, child: Text("Donasi Sekarang"))
+                ElevatedButton(onPressed: () {
+                  Route route = MaterialPageRoute(
+                      builder: (context) => FormDonasiApd());
+                  Navigator.push(context, route);
+                }, child: Text("Donasi Sekarang"))
               ],
             ),
           ),

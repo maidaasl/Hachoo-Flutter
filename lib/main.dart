@@ -28,8 +28,7 @@ class MyApp extends StatelessWidget {
       ),
       home: const MyHomePage(title: 'Hachoo'),
       routes: <String, WidgetBuilder> {
-        '/main': (context) => const DonasiHomePage(),
-        // '/donasi-detail': (context) => Do
+        '/donasi': (context) => const DonasiHomePage(),
       },
 
     );
@@ -85,7 +84,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         drawer: const DrawerScreen(),
         body:  const SingleChildScrollView(
-            child: DonasiHomePage()
         )
     );// This trailing comma makes auto-formatting nicer for build methods.
   }

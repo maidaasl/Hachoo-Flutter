@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-
 import '../screens/konfirmasi.dart';
 
-class FormDonasiOksigen extends StatefulWidget {
-  const FormDonasiOksigen({Key? key}) : super(key: key);
+class FormDonasi extends StatefulWidget {
+  const FormDonasi({Key? key}) : super(key: key);
 
   @override
-  _FormDonasiOksigenState createState() => _FormDonasiOksigenState();
+  _FormDonasiState createState() => _FormDonasiState();
 }
 
-enum SingingCharacter { RSUDTanahAbang, RSUDCempakaPutih, RSUDCengkareng, RSUDKalideres }
+enum Sasaran { BantuanSosial, PasienCovid }
 
-class _FormDonasiOksigenState extends State<FormDonasiOksigen> {
+enum pay { ovo, gopay, dana, bca, bni, bri, mandiri }
+
+class _FormDonasiState extends State<FormDonasi> {
   final _formKey = GlobalKey<FormState>();
   bool checkedValue = false;
-  bool tabung1 = false;
-  bool tabung2 = false;
-  bool tabung3 = false;
-  SingingCharacter? _character = SingingCharacter.RSUDTanahAbang;
+  String nomin = "";
+  Sasaran? _character = Sasaran.BantuanSosial;
+  pay? _pilihan = pay.ovo;
 
   @override
   void initState() {
@@ -42,7 +42,7 @@ class _FormDonasiOksigenState extends State<FormDonasiOksigen> {
                           child: Container(
                             child: Column(
                               children: const [
-                                Text("Donasi Tabung Oksigen",
+                                Text("Donasi Kepada yang membutuhkan",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
@@ -52,6 +52,14 @@ class _FormDonasiOksigenState extends State<FormDonasiOksigen> {
                                 ),
                                 Divider(
                                     color: Colors.black
+                                ),
+                                Text("Mari membantu sesama yang sedang kesulitan akibat dari Covid-19",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 13,
+                                      // color: Color(0xff59A5D8)
+                                    )
                                 ),
                               ],
                             ),
@@ -109,11 +117,11 @@ class _FormDonasiOksigenState extends State<FormDonasiOksigen> {
                                     color: Colors.black
                                 ),
                                 ListTile(
-                                  title: const Text('RSUD Tanah Abang'),
-                                  leading: Radio<SingingCharacter>(
-                                    value: SingingCharacter.RSUDTanahAbang,
+                                  title: const Text('Pasien Covid-19'),
+                                  leading: Radio<Sasaran>(
+                                    value: Sasaran.PasienCovid,
                                     groupValue: _character,
-                                    onChanged: (SingingCharacter? value) {
+                                    onChanged: (Sasaran? value) {
                                       setState(() {
                                         _character = value;
                                       });
@@ -122,37 +130,11 @@ class _FormDonasiOksigenState extends State<FormDonasiOksigen> {
                                 ),
 
                                 ListTile(
-                                  title: const Text('RSUD Cempaka Putih'),
-                                  leading: Radio<SingingCharacter>(
-                                    value: SingingCharacter.RSUDCempakaPutih,
+                                  title: const Text('Bantuan Sosial'),
+                                  leading: Radio<Sasaran>(
+                                    value: Sasaran.BantuanSosial,
                                     groupValue: _character,
-                                    onChanged: (SingingCharacter? value) {
-                                      setState(() {
-                                        _character = value;
-                                      });
-                                    },
-                                  ),
-                                ),
-
-                                ListTile(
-                                  title: const Text('RSUD Cengkareng'),
-                                  leading: Radio<SingingCharacter>(
-                                    value: SingingCharacter.RSUDCengkareng,
-                                    groupValue: _character,
-                                    onChanged: (SingingCharacter? value) {
-                                      setState(() {
-                                        _character = value;
-                                      });
-                                    },
-                                  ),
-                                ),
-
-                                ListTile(
-                                  title: const Text('RSUD Kalideres'),
-                                  leading: Radio<SingingCharacter>(
-                                    value: SingingCharacter.RSUDKalideres,
-                                    groupValue: _character,
-                                    onChanged: (SingingCharacter? value) {
+                                    onChanged: (Sasaran? value) {
                                       setState(() {
                                         _character = value;
                                       });
@@ -176,7 +158,7 @@ class _FormDonasiOksigenState extends State<FormDonasiOksigen> {
                           child: Container(
                             child: Column(
                               children: [
-                                const Text("Donasi Kebutuhan Barang",
+                                const Text("Nominal Donasi",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
@@ -187,37 +169,140 @@ class _FormDonasiOksigenState extends State<FormDonasiOksigen> {
                                 const Divider(
                                     color: Colors.black
                                 ),
-                                CheckboxListTile(
-                                  title: const Text("Tabung 1m3"),
-                                  value: tabung1,
-                                  onChanged: (newValue) {
-                                    setState(() {
-                                      tabung1 = newValue!;
-                                    });
+                                TextFormField(
+                                  autofocus: true,
+                                  decoration: InputDecoration(
+                                    hintText: "Rp 5000",
+                                    labelText: "",
+                                    border: OutlineInputBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(5.0)),
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Please enter the title';
+                                    }
+                                    nomin = value;
+                                    return null;
                                   },
-                                  controlAffinity: ListTileControlAffinity.leading,  //  <-- leading Checkbox
+                                ),
+                              ],
+                            ),
+                            decoration: BoxDecoration (
+                              color: const Color(0xffafe2d6),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 16.0),
+                          ),
+                          left: 0.0,
+                          bottom: 108.0,
+                        ),
+
+                        const SizedBox(height: 18,),
+                        Positioned ( // headline
+                          child: Container(
+                            child: Column(
+                              children: [
+                                const Text("Pilih Metode Pembayaran",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                      // color: Color(0xff59A5D8)
+                                    )
+                                ),
+                                const Divider(
+                                    color: Colors.black
+                                ),
+                                ListTile(
+                                  title: const Text('OVO'),
+                                  leading: Radio<pay>(
+                                    value: pay.ovo,
+                                    groupValue: _pilihan,
+                                    onChanged: (pay? value) {
+                                      setState(() {
+                                        _pilihan = value;
+                                      });
+                                    },
+                                  ),
                                 ),
 
-                                CheckboxListTile(
-                                  title: const Text("Tabung 1,5m3"),
-                                  value: tabung2,
-                                  onChanged: (newValue) {
-                                    setState(() {
-                                      tabung2 = newValue!;
-                                    });
-                                  },
-                                  controlAffinity: ListTileControlAffinity.leading,  //  <-- leading Checkbox
+                                ListTile(
+                                  title: const Text('Gopay'),
+                                  leading: Radio<pay>(
+                                    value: pay.gopay,
+                                    groupValue: _pilihan,
+                                    onChanged: (pay? value) {
+                                      setState(() {
+                                        _pilihan = value;
+                                      });
+                                    },
+                                  ),
                                 ),
 
-                                CheckboxListTile(
-                                  title: const Text("Tabung 2m3"),
-                                  value: tabung3,
-                                  onChanged: (newValue) {
-                                    setState(() {
-                                      tabung3 = newValue!;
-                                    });
-                                  },
-                                  controlAffinity: ListTileControlAffinity.leading,  //  <-- leading Checkbox
+                                ListTile(
+                                  title: const Text('Dana'),
+                                  leading: Radio<pay>(
+                                    value: pay.dana,
+                                    groupValue: _pilihan,
+                                    onChanged: (pay? value) {
+                                      setState(() {
+                                        _pilihan = value;
+                                      });
+                                    },
+                                  ),
+                                ),
+
+                                ListTile(
+                                  title: const Text('BCA'),
+                                  leading: Radio<pay>(
+                                    value: pay.bca,
+                                    groupValue: _pilihan,
+                                    onChanged: (pay? value) {
+                                      setState(() {
+                                        _pilihan = value;
+                                      });
+                                    },
+                                  ),
+                                ),
+
+                                ListTile(
+                                  title: const Text('BNI'),
+                                  leading: Radio<pay>(
+                                    value: pay.bni,
+                                    groupValue: _pilihan,
+                                    onChanged: (pay? value) {
+                                      setState(() {
+                                        _pilihan = value;
+                                      });
+                                    },
+                                  ),
+                                ),
+
+                                ListTile(
+                                  title: const Text('BRI'),
+                                  leading: Radio<pay>(
+                                    value: pay.bri,
+                                    groupValue: _pilihan,
+                                    onChanged: (pay? value) {
+                                      setState(() {
+                                        _pilihan = value;
+                                      });
+                                    },
+                                  ),
+                                ),
+
+                                ListTile(
+                                  title: const Text('Mandiri'),
+                                  leading: Radio<pay>(
+                                    value: pay.mandiri,
+                                    groupValue: _pilihan,
+                                    onChanged: (pay? value) {
+                                      setState(() {
+                                        _pilihan = value;
+                                      });
+                                    },
+                                  ),
                                 ),
                               ],
                             ),
@@ -240,7 +325,7 @@ class _FormDonasiOksigenState extends State<FormDonasiOksigen> {
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),),
 
                           onPressed: () {
-                            if (_formKey.currentState!.validate() && (tabung1==true || tabung2==true || tabung3==true)) {
+                            if (_formKey.currentState!.validate() && nomin!="") {
                               // If the form is valid, display a snackbar. In the real world,
                               // you'd often call a server or save the information in a database.
                               ScaffoldMessenger.of(context).showSnackBar(

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-
 import '../screens/konfirmasi.dart';
 
-class FormDonasiOksigen extends StatefulWidget {
-  const FormDonasiOksigen({Key? key}) : super(key: key);
+class FormDonasiApd extends StatefulWidget {
+  const FormDonasiApd({Key? key}) : super(key: key);
 
   @override
-  _FormDonasiOksigenState createState() => _FormDonasiOksigenState();
+  _FormDonasiApdState createState() => _FormDonasiApdState();
 }
 
 enum SingingCharacter { RSUDTanahAbang, RSUDCempakaPutih, RSUDCengkareng, RSUDKalideres }
 
-class _FormDonasiOksigenState extends State<FormDonasiOksigen> {
+class _FormDonasiApdState extends State<FormDonasiApd> {
   final _formKey = GlobalKey<FormState>();
   bool checkedValue = false;
   bool tabung1 = false;
@@ -42,7 +41,7 @@ class _FormDonasiOksigenState extends State<FormDonasiOksigen> {
                           child: Container(
                             child: Column(
                               children: const [
-                                Text("Donasi Tabung Oksigen",
+                                Text("Donasi Alat Pelindung Diri",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
@@ -52,6 +51,14 @@ class _FormDonasiOksigenState extends State<FormDonasiOksigen> {
                                 ),
                                 Divider(
                                     color: Colors.black
+                                ),
+                                Text("Bantu para tim medis untuk terhindar dari paparan Covid-19",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 13,
+                                      // color: Color(0xff59A5D8)
+                                    )
                                 ),
                               ],
                             ),
@@ -188,7 +195,7 @@ class _FormDonasiOksigenState extends State<FormDonasiOksigen> {
                                     color: Colors.black
                                 ),
                                 CheckboxListTile(
-                                  title: const Text("Tabung 1m3"),
+                                  title: const Text("Masker KN95"),
                                   value: tabung1,
                                   onChanged: (newValue) {
                                     setState(() {
@@ -199,7 +206,7 @@ class _FormDonasiOksigenState extends State<FormDonasiOksigen> {
                                 ),
 
                                 CheckboxListTile(
-                                  title: const Text("Tabung 1,5m3"),
+                                  title: const Text("Sarung tangan medis"),
                                   value: tabung2,
                                   onChanged: (newValue) {
                                     setState(() {
@@ -210,7 +217,7 @@ class _FormDonasiOksigenState extends State<FormDonasiOksigen> {
                                 ),
 
                                 CheckboxListTile(
-                                  title: const Text("Tabung 2m3"),
+                                  title: const Text("Masker 3ply"),
                                   value: tabung3,
                                   onChanged: (newValue) {
                                     setState(() {

@@ -1,3 +1,4 @@
+import 'package:donasi/donasi.dart';
 import 'package:flutter/material.dart';
 
 class DrawerScreen extends StatefulWidget {
@@ -49,7 +50,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
             iconData: Icons.money,
             title: "Donasi",
             onTilePressed: () {
-
+              Route route = MaterialPageRoute(
+                  builder: (context) => Donasi());
+              Navigator.push(context, route);
             },
           ),
           DrawerListTile(

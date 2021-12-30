@@ -1,12 +1,13 @@
 import 'package:donasi/screens/donasi_home.dart';
 import 'package:flutter/material.dart';
+import 'package:hachoo/widgets/drawer.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const Donasi());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class Donasi extends StatelessWidget {
+  const Donasi({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
@@ -28,9 +29,7 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(title: 'Hachoo'),
       routes: <String, WidgetBuilder> {
         '/main': (context) => const DonasiHomePage(),
-        // '/donasi-detail': (context) => Do
       },
-
     );
   }
 }
@@ -82,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // the App.build method, and use it to set our appbar title.
           title: Text(widget.title),
         ),
-        // drawer: const DrawerScreen(),
+        drawer: const DrawerScreen(),
         body:  const SingleChildScrollView(
             child: DonasiHomePage()
         )

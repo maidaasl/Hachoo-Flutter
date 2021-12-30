@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'form_donasi.dart';
+
 class CardDonasi extends StatefulWidget {
   const CardDonasi({Key? key}) : super(key: key);
 
@@ -45,7 +47,11 @@ class _CardDonasiState extends State<CardDonasi> {
                     ],
                   ),
                 ),
-                ElevatedButton(onPressed: () {}, child: Text("Donasi Sekarang"))
+                ElevatedButton(onPressed: () {
+                  Route route = MaterialPageRoute(
+                      builder: (context) => FormDonasi());
+                  Navigator.push(context, route);
+                }, child: Text("Donasi Sekarang"))
               ],
             ),
           ),
