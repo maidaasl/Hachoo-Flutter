@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
+import './body.dart';
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
-
-  @override
-  _ProfilePageState createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
+class ProfilePage extends StatelessWidget {
+  static String routeName = "/profile";
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(child: Text('PROFILE')),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Profile"),
       ),
+      body: Body(),
     );
   }
 }
