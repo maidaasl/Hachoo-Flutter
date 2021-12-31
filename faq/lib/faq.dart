@@ -13,18 +13,20 @@ late Future<List<Question>?> futureQuestion;
 String pertanyaan = '';
 List<String> list = ["gambar 1","gambar 2","gambar 3"];
 
-void main() => runApp(FaqAPI());
+// void main() => runApp(FaqAPI());
 
-class MyApp extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        home: FaqAPI()
-    );
-  }
-}
+// class MyApp extends StatelessWidget{
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//         home: FaqAPI()
+//     );
+//   }
+// }
 
 class FaqAPI extends StatefulWidget {
+  const FaqAPI ({Key? key}) : super(key: key);
+  
   @override
   FaqListScreen createState() => FaqListScreen();
 }

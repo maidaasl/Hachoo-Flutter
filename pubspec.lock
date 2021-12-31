@@ -16,7 +16,7 @@ packages:
     source: hosted
     version: "2.1.0"
   carousel_slider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: carousel_slider
       url: "https://pub.dartlang.org"
@@ -115,7 +115,7 @@ packages:
     source: path
     version: "0.0.1"
   http:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: http
       url: "https://pub.dartlang.org"
