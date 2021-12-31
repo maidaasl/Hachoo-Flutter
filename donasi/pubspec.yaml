@@ -11,10 +11,18 @@ dependencies:
   flutter:
     sdk: flutter
 
+  http: ^0.13.4
+
+  hachoo:
+    path: ../.
+
+  carousel_slider: ^4.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
