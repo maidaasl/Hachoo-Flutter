@@ -5,7 +5,9 @@ import 'package:http/http.dart' as http;
 import 'package:faq/models/question.dart';
 import 'package:faq/api/api_faq.dart';
 import 'dart:convert';
+import 'package:url_launcher/url_launcher.dart';
 
+// @dart=2.9
 late Future<List<Question>?> futureQuestion;
 
 String pertanyaan = '';
@@ -84,6 +86,32 @@ class FaqListScreen extends State<FaqAPI> {
                           itemCount: listOfTiles.length,),
                         Center(
                           child: FormScreen(),
+                        ),
+                        Center(
+                          child: Card(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                const ListTile(
+                                  leading: Icon(Icons.album),
+                                  title: Text('Kenali Virus COVID-19'),
+                                  subtitle: Text('30 Juli 2021'),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: <Widget>[
+                                    TextButton(
+                                      child: const Text('Lihat'),
+                                      onPressed: () async {
+                                        await openURL('https://www.biofarma.co.id/id/berita-terbaru/detail/kenali-virus-covid19');
+                                      },
+                                    ),
+                                    const SizedBox(width: 8),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                         Center(
                           child: Container(
@@ -257,7 +285,7 @@ class FormScreen extends StatelessWidget {
               futureQuestion = fetchQuestion();
             },
             child: Text(" Kirimkan pertanyaan ", style: TextStyle(
-              fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.bold,
                 color: Colors.black,
                 fontSize: 17.0
             ))
@@ -271,3 +299,6 @@ class FormScreen extends StatelessWidget {
 
 
 
+Future <void> openURL (String url, {bool forceWebView=false,bool enableJavaScript=false}) async{
+  await launch(url);
+}
