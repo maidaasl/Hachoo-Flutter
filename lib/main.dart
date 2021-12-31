@@ -2,6 +2,7 @@ import 'package:donasi/screens/donasi_home.dart';
 import 'package:flutter/material.dart';
 import 'package:hachoo/widgets/drawer.dart';
 import 'package:faq/faq.dart';
+import 'package:homepage/main.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,15 +29,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
       ),
       home: const MyHomePage(title: 'Hachoo'),
-      routes: <String, WidgetBuilder> {
+      routes: <String, WidgetBuilder>{
         '/donasi': (context) => const DonasiHomePage(),
         '/faq': (context) => const FaqAPI(),
       },
-
     );
   }
 }
-
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -85,8 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.title),
         ),
         drawer: const DrawerScreen(),
-        body:  const SingleChildScrollView(
-        )
-    );// This trailing comma makes auto-formatting nicer for build methods.
+        body:
+            BelajarForm()); // This trailing comma makes auto-formatting nicer for build methods.
   }
 }
