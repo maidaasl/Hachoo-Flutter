@@ -1,5 +1,7 @@
 import 'package:donasi/donasi.dart';
+import 'package:faq/faq.dart';
 import 'package:flutter/material.dart';
+import 'package:faq/faq.dart';
 
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen({Key? key}) : super(key: key);
@@ -36,7 +38,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
             iconData: Icons.info_outlined,
             title: "Informasi",
             onTilePressed: () {
-
+                Route route = MaterialPageRoute(
+                  builder: (context) => FaqAPI());
+              Navigator.push(context, route);
             },
           ),
           DrawerListTile(
