@@ -6,7 +6,7 @@ import 'dart:async';
 
 void main() {
   runApp(MaterialApp(
-    title: "Belajar Form Flutter",
+    title: "CS Hachoo",
     home: BelajarForm(),
   ));
 }
