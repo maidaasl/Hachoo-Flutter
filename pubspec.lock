@@ -106,7 +106,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.1.2"
-
   flutter:
     dependency: "direct main"
     description: flutter
@@ -158,7 +157,7 @@ packages:
     source: path
     version: "0.0.1"
   http:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: http
       url: "https://pub.dartlang.org"

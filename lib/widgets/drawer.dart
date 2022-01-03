@@ -1,6 +1,7 @@
 import 'package:donasi/donasi.dart';
 import 'package:faq/faq.dart';
 import 'package:flutter/material.dart';
+import 'package:cs/cs.dart';
 import 'package:faq/faq.dart';
 
 class DrawerScreen extends StatefulWidget {
@@ -44,10 +45,12 @@ class _DrawerScreenState extends State<DrawerScreen> {
             },
           ),
           DrawerListTile(
-            iconData: Icons.home_repair_service_outlined,
+            iconData: Icons.person,
             title: "Layanan Pengguna",
             onTilePressed: () {
-
+              Route route = MaterialPageRoute(
+                  builder: (context) => CSapi());
+              Navigator.push(context, route);
             },
           ),
           DrawerListTile(
